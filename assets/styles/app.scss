@@ -1,3 +1,8 @@
-body {
-    background-color: blue;
-}
+$primary: rgb(136, 205, 252);
+
+$secondary: rgb(8, 62, 99);
+
+
+@import "~bootstrap/scss/bootstrap";
+
+

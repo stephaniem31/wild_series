@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210525100405 extends AbstractMigration
+final class Version20210527085600 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -22,17 +22,13 @@ final class Version20210525100405 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE program DROP FOREIGN KEY FK_92ED77843EB8070A');
         $this->addSql('DROP INDEX IDX_92ED77843EB8070A ON program');
-        $this->addSql('ALTER TABLE program CHANGE program_id category_id INT NOT NULL');
-        $this->addSql('ALTER TABLE program ADD CONSTRAINT FK_92ED778412469DE2 FOREIGN KEY (category_id) REFERENCES category (id)');
-        $this->addSql('CREATE INDEX IDX_92ED778412469DE2 ON program (category_id)');
+        $this->addSql('ALTER TABLE program DROP program_id');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE program DROP FOREIGN KEY FK_92ED778412469DE2');
-        $this->addSql('DROP INDEX IDX_92ED778412469DE2 ON program');
-        $this->addSql('ALTER TABLE program CHANGE category_id program_id INT NOT NULL');
+        $this->addSql('ALTER TABLE program ADD program_id INT NOT NULL');
         $this->addSql('ALTER TABLE program ADD CONSTRAINT FK_92ED77843EB8070A FOREIGN KEY (program_id) REFERENCES category (id) ON UPDATE NO ACTION ON DELETE NO ACTION');
         $this->addSql('CREATE INDEX IDX_92ED77843EB8070A ON program (program_id)');
     }
