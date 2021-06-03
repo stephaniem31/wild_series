@@ -25,7 +25,7 @@ class Category
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Program::class, mappedBy="categories")
+     * @ORM\OneToMany(targetEntity=Program::class, mappedBy="category")
      */
     private $programs;
 
@@ -63,7 +63,7 @@ class Category
     {
         if (!$this->programs->contains($program)) {
             $this->programs[] = $program;
-            $program->setCategories($this);
+            $program->setCategory($this);
         }
 
         return $this;
@@ -73,8 +73,8 @@ class Category
     {
         if ($this->programs->removeElement($program)) {
             // set the owning side to null (unless already changed)
-            if ($program->getCategories() === $this) {
-                $program->setCategories(null);
+            if ($program->getCategory() === $this) {
+                $program->setCategory(null);
             }
         }
 
